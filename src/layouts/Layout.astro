@@ -1,0 +1,112 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Inconsolata:wght@200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root {
+    --accent: rgba(0, 0, 0, 1);
+    --accent-white: rgba(248, 249, 250, 1);
+    --accent-secondary: rgba(52, 58, 64, 1);
+    --accent-3: rgba(102, 102, 110, 1);
+    --accent-4: rgba(137, 137, 150, 1);
+    --primary: rgba(2, 187, 182, 1);
+    --primary-2: rgba(67, 203, 199, 1);
+    --primary-3: rgba(194, 238, 237, 1);
+    --inconsolata: "Inconsolata", monospace;
+    --athiti: "Athiti", sans-serif;
+
+    --h1: 22px;
+    --hero: 18px;
+
+    /* --accent: 124, 58, 237;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%); */
+  }
+
+  /* Reset margins and paddings */
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: inherit;
+  }
+
+  /* Set default font */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    scroll-behavior: smooth;
+  }
+
+  /* Style headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  body {
+    min-height: 100vh;
+  }
+
+  /* Style anchor links */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Style lists */
+  ul,
+  ol {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  /* Style images and media */
+  img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+    width: auto;
+  }
+
+  button {
+    cursor: pointer;
+  }
+</style>
