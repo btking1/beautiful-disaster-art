@@ -1,15 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import MenuIcon from "../components/Icons/MenuIcon.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <nav class="py-3 px-3 flex justify-between items-baseline">
-    <h1>
-      Beautiful <span>Disaster Art</span>
-    </h1>
-    <MenuIcon />
-  </nav>
   <main class="flex flex-col items-start gap-11 px-3 py-3">
     <section>
       <p>
@@ -55,6 +48,16 @@ import MenuIcon from "../components/Icons/MenuIcon.astro";
   h1 > span {
     color: var(--primary);
   }
+  .slide-down {
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  #menu {
+    transform: translateY(-100%);
+    background-color: var(--accent-secondary-alpha);
+    backdrop-filter: blur(0.2rem);
+  }
 
   p {
     color: var(--accent-3);
@@ -70,9 +73,14 @@ import MenuIcon from "../components/Icons/MenuIcon.astro";
   p > span {
     color: var(--primary-2);
   }
+
   img {
     border-radius: 5%;
     aspect-ratio: 1/1;
     width: 100%;
+  }
+  img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
   }
 </style>
