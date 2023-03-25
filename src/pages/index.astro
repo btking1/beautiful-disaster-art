@@ -43,15 +43,16 @@ const images: Imag[] = [
         > me.
       </p>
     </section>
-    <section class={`flex flex-col w-full p-5 gap-3`}>
+    <section id="img-list" class={`flex flex-col w-full p-5 gap-3`}>
       {
         images.map((image) => (
           <Image
             id={"image"}
             src={image.src}
             alt={image.alt}
+            data-load="false"
             width={1600}
-            fit="cover"
+            height={900}
             aspectRatio="16:9"
             format="jpg"
           />
@@ -62,19 +63,26 @@ const images: Imag[] = [
 </Layout>
 <script>
   const img = document.images;
-  for (const key in img) {
-    const i = img[key];
-    console.log(img[key]);
-    const image = document.getElementById("image");
+  const imgList = document.getElementById("img-list");
+  const image = imgList.children;
+  console.log(image);
+  for (let i = 0; i < image.length; i++) {
     const handleLoad = () => {
       console.log("Image has finished loading.");
-      setTimeout(() => {
-        i.style.filter = "blur(0rem)";
-        i.classList.add("img-fade");
-      }, 1000);
+      image[i].classList.add("img-fade");
     };
-    i.addEventListener("load", handleLoad);
+    image[i].addEventListener("load", handleLoad);
+    removeEventListener("load", handleLoad);
   }
+  // for (const key in img) {
+  //   const i = img[key];
+  //   const handleLoad = () => {
+  //     console.log("Image has finished loading.");
+  //     i.classList.add("img-fade");
+  //   };
+  //   i.addEventListener("load", handleLoad);
+  //   removeEventListener("load", handleLoad);
+  // }
 </script>
 
 <style>
@@ -122,20 +130,20 @@ const images: Imag[] = [
 
   img {
     border-radius: 5%;
-    aspect-ratio: 1/1;
+    display: hidden;
     width: 100%;
     opacity: 0;
     filter: blur(2rem);
-    transition: all 1000ms ease-in;
+    transition: all 1s ease-in;
   }
-
   .img-fade {
+    display: block;
     opacity: 1;
     filter: blur(0rem);
   }
 
   img:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in;
+    transform: scale(1.01);
+    transition: transform 100ms ease-in-out;
   }
 </style>
