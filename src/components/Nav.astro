@@ -1,6 +1,4 @@
 ---
-// import MenuIcon from "../components/Icons/MenuIcon.astro";
-// import CloseIcon from "../components/Icons/CloseIcon.astro";
 const links = [
   { href: "/", label: "Home" },
   { href: "/gallery", label: "gallery" },
@@ -14,7 +12,7 @@ const links = [
   <ul
     id="menu"
     data-visible="false"
-    class="flex-col w-full top-0 left-0 h-full fixed overflow-hidden z-20 justify-center items-center gap-y-3"
+    class="flex-col w-full top-0 left-0 h-full flex fixed overflow-hidden z-20 justify-center items-center gap-y-3"
   >
     {
       links.map((link) => {
@@ -33,18 +31,14 @@ const links = [
   <button id="close-button" class="z-[50] hidden"> </button>
 </nav>
 <script>
-  // define:vars={{ isHidden }}
   const menuButton = document.querySelector("#menu-button");
   const closeButton = document.querySelector("#close-button");
   const menu = document.querySelector("#menu");
 
   const visibility = menu.getAttribute("data-visible");
-  // const menuButtonVis = menuButton.getAttribute("data-visible");
-  // const closeButtonVis = closeButton.getAttribute("data-visible");
 
   function toggleMenu() {
     if ((closeButton.style.display = "none")) {
-      menu.style.display = "flex";
       menu.style.transform = "translateY(0%)";
       closeButton.style.display = "block";
 
@@ -74,9 +68,7 @@ const links = [
   h1 > span {
     color: var(--primary);
   }
-  /* #menu[data-visible="true"] {
-    transform: translateY(0%);
-  } */
+
   #menu {
     transform: translateY(-100%);
     background-color: var(--accent-secondary-alpha);

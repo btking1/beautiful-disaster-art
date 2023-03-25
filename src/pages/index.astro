@@ -11,7 +11,6 @@ type Imag = {
   alt: string;
   title: string;
 };
-
 const images: Imag[] = [
   {
     src: hearme,
@@ -44,10 +43,11 @@ const images: Imag[] = [
         > me.
       </p>
     </section>
-    <section class="flex flex-col w-full p-5 gap-3">
+    <section class={`flex flex-col w-full p-5 gap-3`}>
       {
         images.map((image) => (
           <Image
+            id={"image"}
             src={image.src}
             alt={image.alt}
             width={1600}
@@ -60,6 +60,22 @@ const images: Imag[] = [
     </section>
   </main>
 </Layout>
+<script>
+  const img = document.images;
+  for (const key in img) {
+    const i = img[key];
+    console.log(img[key]);
+    const image = document.getElementById("image");
+    const handleLoad = () => {
+      console.log("Image has finished loading.");
+      setTimeout(() => {
+        i.style.filter = "blur(0rem)";
+        i.classList.add("img-fade");
+      }, 1000);
+    };
+    i.addEventListener("load", handleLoad);
+  }
+</script>
 
 <style>
   main {
@@ -108,9 +124,18 @@ const images: Imag[] = [
     border-radius: 5%;
     aspect-ratio: 1/1;
     width: 100%;
+    opacity: 0;
+    filter: blur(2rem);
+    transition: all 1000ms ease-in;
   }
+
+  .img-fade {
+    opacity: 1;
+    filter: blur(0rem);
+  }
+
   img:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out;
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in;
   }
 </style>
