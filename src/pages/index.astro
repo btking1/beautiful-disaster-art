@@ -1,5 +1,32 @@
 ---
+import { Image, Picture } from "@astrojs/image/components";
 import Layout from "../layouts/Layout.astro";
+import hearme from "../../public/assets/hearme.jpg";
+import her from "../../public/assets/her.jpg";
+import muva from "../../public/assets/muva.jpg";
+import passion from "../../public/assets/passion.jpg";
+
+type Imag = {
+  src: string;
+  alt: string;
+  title: string;
+};
+
+const images: Imag[] = [
+  {
+    src: hearme,
+    alt: "paiting titled hear me",
+    title: "hear me",
+  },
+  { src: her, alt: "painting titled her", title: "her" },
+  { src: muva, alt: "painting titled muva", title: "muva" },
+  {
+    src: passion,
+    alt: "painting titled passion",
+    title: "passion",
+  },
+  { src: "/assets/her.jpg", alt: "painting titled her", title: "her" },
+];
 ---
 
 <Layout title="Welcome to Astro.">
@@ -17,16 +44,19 @@ import Layout from "../layouts/Layout.astro";
         > me.
       </p>
     </section>
-    <section
-      class="flex flex-col border border-solid border-red-400 w-full p-5 gap-3"
-    >
-      <img src="../public/assets/muva.jpg" alt="painting titled MUVA " />
-      <img src="../public/assets/her.jpg" alt="painting titled her " />
-      <img src="../public/assets/hearme.jpg" alt="painting titled hear me " />
-      <img
-        src="../public/assets/passion.jpg"
-        alt="painting titled passion of heartbreak"
-      />
+    <section class="flex flex-col w-full p-5 gap-3">
+      {
+        images.map((image) => (
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width={1600}
+            fit="cover"
+            aspectRatio="16:9"
+            format="jpg"
+          />
+        ))
+      }
     </section>
   </main>
 </Layout>
