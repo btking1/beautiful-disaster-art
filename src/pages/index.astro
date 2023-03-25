@@ -62,18 +62,19 @@ const images: Imag[] = [
   </main>
 </Layout>
 <script>
-  const img = document.images;
-  const imgList = document.getElementById("img-list");
+  const section = document.querySelector("section");
+  const imgList = document.querySelector("#img-list");
   const image = imgList.children;
-  console.log(image);
-  for (let i = 0; i < image.length; i++) {
-    const handleLoad = () => {
+  const handleLoad = () => {
+    for (let i = 0; i < image.length; i++) {
+      console.log(image[i]);
       console.log("Image has finished loading.");
       image[i].classList.add("img-fade");
-    };
-    image[i].addEventListener("load", handleLoad);
-    removeEventListener("load", handleLoad);
-  }
+    }
+  };
+  window.addEventListener("load", handleLoad);
+  // removeEventListener("load", handleLoad);
+
   // for (const key in img) {
   //   const i = img[key];
   //   const handleLoad = () => {
@@ -133,8 +134,10 @@ const images: Imag[] = [
     display: hidden;
     width: 100%;
     opacity: 0;
+    transform: scale(1);
     filter: blur(2rem);
-    transition: all 1s ease-in;
+    transition: opacity 1s ease-in;
+    transition: filter 1s ease-in;
   }
   .img-fade {
     display: block;
@@ -143,7 +146,7 @@ const images: Imag[] = [
   }
 
   img:hover {
-    transform: scale(1.01);
-    transition: transform 100ms ease-in-out;
+    transform: scale(1.1);
+    transition: transform 500ms ease-in-out;
   }
 </style>
