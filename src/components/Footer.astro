@@ -1,7 +1,18 @@
 ---
+const path = Astro.url.pathname;
+
+let sticky = false;
+if (path === "/") {
+  console.log("home");
+  sticky = true;
+}
 ---
 
-<footer class="flex justify-center gap-6 p-3">
+<footer
+  class={`${
+    sticky ? "fixed" : ""
+  } flex w-full bottom-0 justify-center gap-x-6 items-center`}
+>
   <a href="https://instagram.com">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +64,7 @@
 </footer>
 
 <style>
-  svg {
+  a > svg {
     width: 3.5rem;
     height: 3.5rem;
     stroke: var(--accent-4);
@@ -62,9 +73,8 @@
     background-repeat: no-repeat;
   }
 
-  svg:hover {
+  a > svg:hover {
     cursor: pointer;
-
     stroke: var(--primary-3);
     transform: translateY(-5%);
     transition: transform 0.3s ease-in-out;

@@ -3,9 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import ImgList from "../components/ImgList.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main class="flex flex-col items-start gap-11 py-3 px-2 mt-6 mb-20">
-    <section>
+<Layout title="Beautiful Disaster Art">
+  <main class="py-2 px-2">
+    <section class="py-2">
       <p>
         Welcome to <span>Beautiful Disaster</span> Art, where my art is <span
           >home</span
@@ -18,18 +18,14 @@ import ImgList from "../components/ImgList.astro";
         > me.
       </p>
     </section>
-    <section id="img-list" class={`flex flex-col w-full gap-y-3`}>
-      <ImgList amount={1} />
+
+    <section id="img-list" class={`w-full ml-[-5%] pt-8`}>
+      <ImgList amount={1} radius={false} />
     </section>
   </main>
 </Layout>
 
 <style>
-  main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 1rem;
-  }
   h1 {
     color: var(--accent-4);
     font-family: var(--inconsolata);
@@ -40,16 +36,6 @@ import ImgList from "../components/ImgList.astro";
 
   h1 > span {
     color: var(--primary);
-  }
-  .slide-down {
-    transform: translateY(0);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  #menu {
-    transform: translateY(-100%);
-    background-color: var(--accent-secondary-alpha);
-    backdrop-filter: blur(0.2rem);
   }
 
   p {

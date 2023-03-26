@@ -8,7 +8,7 @@ const links = [
 ];
 ---
 
-<nav class="flex py-2 px-3 justify-between items-end">
+<nav class="flex py-3 px-3 justify-between items-end">
   <ul
     id="menu"
     data-visible="false"
@@ -101,5 +101,15 @@ const links = [
     background-size: cover;
 
     background-repeat: no-repeat;
+  }
+  .slide-down {
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  #menu {
+    transform: translateY(-100%);
+    background-color: var(--accent-secondary-alpha);
+    backdrop-filter: blur(0.2rem);
   }
 </style>

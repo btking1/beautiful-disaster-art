@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ImgList from "../components/ImgList.astro";
+---
+
+<Layout title="gallery">
+  <main class="py-2">
+    <section id="img-list" class={`flex flex-col w-full gap-y-5 px-2`}>
+      <ImgList amount={4} radius={true} />
+    </section>
+  </main>
+</Layout>
+<style>
+  main {
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    /* grid-gap: 1rem; */
+  }
+</style>
