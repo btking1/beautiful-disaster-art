@@ -1,0 +1,109 @@
+---
+import { Image, Picture } from "@astrojs/image/components";
+
+import hearme from "../../public/assets/hearme.jpg";
+import her from "../../public/assets/her.jpg";
+import muva from "../../public/assets/muva.jpg";
+import passion from "../../public/assets/passion.jpg";
+
+export interface Props {
+  amount: number;
+  ratio?: number;
+}
+
+type Imag = {
+  src: string;
+  alt: string;
+  title: string;
+};
+
+let { amount, ratio = 16 } = Astro.props;
+
+const images: Imag[] = [
+  {
+    src: hearme,
+    alt: "paiting titled hear me",
+    title: "hear me",
+  },
+  { src: her, alt: "painting titled her", title: "her" },
+  { src: muva, alt: "painting titled muva", title: "muva" },
+  {
+    src: passion,
+    alt: "painting titled passion",
+    title: "passion",
+  },
+  { src: "/assets/her.jpg", alt: "painting titled her", title: "her" },
+];
+let imgAmount = images.slice(0, amount);
+console.log(imgAmount);
+---
+
+{
+  imgAmount.length > 1 ? (
+    imgAmount.map((image, amount, ratio) => (
+      <Image
+        src={image.src}
+        alt={image.alt}
+        data-title={`${image.title}`}
+        width={1600}
+        height={900}
+        aspectRatio={"16:9"}
+        format="jpg"
+      />
+    ))
+  ) : (
+    <Image
+      src={images[0].src}
+      alt={images[0].alt}
+      data-title={`${images[0].title}`}
+      width={1200}
+      height={1600}
+      aspectRatio={"12:16"}
+      format="jpg"
+    />
+  )
+}
+<script>
+  const imgList = document.querySelector("#img-list");
+  const image = imgList.children;
+  const handleLoad = () => {
+    if (image.length >= 1) {
+      console.log(image[0]);
+      const singleImg = window.getComputedStyle(image[0]);
+      console.log(singleImg);
+    }
+
+    for (let i = 0; i < image.length; i++) {
+      image[i].classList.add("img-fade");
+    }
+  };
+  window.addEventListener("load", handleLoad);
+</script>
+<style>
+  img {
+    display: hidden;
+    width: 100%;
+    opacity: 0;
+    transform: scale(1);
+    filter: blur(2rem);
+    transition: opacity 1s ease-in;
+    transition: filter 1s ease-in;
+    overflow-x: hidden;
+    margin-left: -1.5rem;
+    border-radius: 5%;
+  }
+  .img-fade {
+    display: block;
+    opacity: 1;
+    filter: blur(0rem);
+  }
+  img:hover {
+    transform: scale(1.1);
+    transition: transform 500ms ease-in-out;
+    cursor: pointer;
+  }
+  img:hover[data-title="hear me"] {
+    transform: none;
+    cursor: pointer;
+  }
+</style>

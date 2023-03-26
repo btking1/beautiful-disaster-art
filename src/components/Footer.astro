@@ -1,32 +1,72 @@
+---
+---
+
 <footer class="flex justify-center gap-6 p-3">
-  <div id="instagram" class="p-1"></div>
-  <div id="twitter" class="p-1"></div>
-  <div id="tiktok" class="p-1"></div>
+  <a href="https://instagram.com">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      ><g fill="none"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 16a4 4 0 1 0 0-8a4 4 0 0 0 0 8Z"></path><path
+          d="M3 16V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5Z"
+        ></path><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m17.5 6.51l.01-.011"></path></g
+      ></svg
+    >
+  </a>
+
+  <a href="https://twitter.com">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      ><path
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M23 3.01s-2.018 1.192-3.14 1.53a4.48 4.48 0 0 0-7.86 3v1a10.66 10.66 0 0 1-9-4.53s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5c0-.278-.028-.556-.08-.83C21.94 5.674 23 3.01 23 3.01Z"
+      ></path></svg
+    >
+  </a>
+
+  <a href="https://tiktok.com">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      ><g fill="none" stroke-linecap="round" stroke-linejoin="round"
+        ><path
+          d="M21 8v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5Z"
+        ></path><path d="M10 12a3 3 0 1 0 3 3V6c.333 1 1.6 3 4 3"></path></g
+      ></svg
+    >
+  </a>
 </footer>
 
 <style>
-  #instagram {
+  svg {
     width: 3.5rem;
-    aspect-ratio: 1;
-    background: url("/public/assets/icons/instagram.svg");
+    height: 3.5rem;
+    stroke: var(--accent-4);
+    stroke-width: 0.05rem;
     background-size: cover;
-
     background-repeat: no-repeat;
   }
-  #twitter {
-    width: 3.5rem;
-    aspect-ratio: 1;
-    background: url("/public/assets/icons/twitter.svg");
-    background-size: cover;
 
-    background-repeat: no-repeat;
-  }
-  #tiktok {
-    width: 3.5rem;
-    aspect-ratio: 1;
-    background: url("/public/assets/icons/tiktok.svg");
-    background-size: cover;
+  svg:hover {
+    cursor: pointer;
 
-    background-repeat: no-repeat;
+    stroke: var(--primary-3);
+    transform: translateY(-5%);
+    transition: transform 0.3s ease-in-out;
   }
 </style>

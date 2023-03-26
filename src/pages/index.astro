@@ -1,35 +1,10 @@
 ---
-import { Image, Picture } from "@astrojs/image/components";
 import Layout from "../layouts/Layout.astro";
-import hearme from "../../public/assets/hearme.jpg";
-import her from "../../public/assets/her.jpg";
-import muva from "../../public/assets/muva.jpg";
-import passion from "../../public/assets/passion.jpg";
-
-type Imag = {
-  src: string;
-  alt: string;
-  title: string;
-};
-const images: Imag[] = [
-  {
-    src: hearme,
-    alt: "paiting titled hear me",
-    title: "hear me",
-  },
-  { src: her, alt: "painting titled her", title: "her" },
-  { src: muva, alt: "painting titled muva", title: "muva" },
-  {
-    src: passion,
-    alt: "painting titled passion",
-    title: "passion",
-  },
-  { src: "/assets/her.jpg", alt: "painting titled her", title: "her" },
-];
+import ImgList from "../components/ImgList.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main class="flex flex-col items-start gap-11 px-3 py-3">
+  <main class="flex flex-col items-start gap-11 py-3 px-2 mt-6 mb-20">
     <section>
       <p>
         Welcome to <span>Beautiful Disaster</span> Art, where my art is <span
@@ -43,48 +18,11 @@ const images: Imag[] = [
         > me.
       </p>
     </section>
-    <section id="img-list" class={`flex flex-col w-full p-5 gap-3`}>
-      {
-        images.map((image) => (
-          <Image
-            id={"image"}
-            src={image.src}
-            alt={image.alt}
-            data-load="false"
-            width={1600}
-            height={900}
-            aspectRatio="16:9"
-            format="jpg"
-          />
-        ))
-      }
+    <section id="img-list" class={`flex flex-col w-full gap-y-3`}>
+      <ImgList amount={1} />
     </section>
   </main>
 </Layout>
-<script>
-  const section = document.querySelector("section");
-  const imgList = document.querySelector("#img-list");
-  const image = imgList.children;
-  const handleLoad = () => {
-    for (let i = 0; i < image.length; i++) {
-      console.log(image[i]);
-      console.log("Image has finished loading.");
-      image[i].classList.add("img-fade");
-    }
-  };
-  window.addEventListener("load", handleLoad);
-  // removeEventListener("load", handleLoad);
-
-  // for (const key in img) {
-  //   const i = img[key];
-  //   const handleLoad = () => {
-  //     console.log("Image has finished loading.");
-  //     i.classList.add("img-fade");
-  //   };
-  //   i.addEventListener("load", handleLoad);
-  //   removeEventListener("load", handleLoad);
-  // }
-</script>
 
 <style>
   main {
@@ -127,27 +65,5 @@ const images: Imag[] = [
 
   p > span {
     color: var(--primary-2);
-  }
-
-  img {
-    border-radius: 5%;
-    display: hidden;
-    width: 100%;
-    opacity: 0;
-    transform: scale(1);
-    filter: blur(2rem);
-    transition: opacity 1s ease-in;
-    transition: filter 1s ease-in;
-  }
-  .img-fade {
-    display: block;
-    opacity: 1;
-    filter: blur(0rem);
-  }
-
-  img:hover {
-    transform: scale(1.1);
-    transition: transform 500ms ease-in-out;
-    cursor: pointer;
   }
 </style>
