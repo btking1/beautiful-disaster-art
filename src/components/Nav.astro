@@ -23,7 +23,7 @@ const links = [
     {
       links.map((link) => {
         return (
-          <li class="text-white text-3xl font-thin">
+          <li class="text-3xl font-thin">
             <a href={link.href}>{link.label}</a>
           </li>
         );
@@ -76,11 +76,16 @@ const links = [
 
   li {
     font-family: var(--athiti);
+    color: var(--accent-white);
   }
 
   @media (min-width: 768px) {
     #menu-button {
       display: none;
+    }
+
+    li {
+      color: var(--primary-2);
     }
 
     .mobile-menu {
