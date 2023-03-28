@@ -47,98 +47,113 @@ let imgAmount = images.slice(0, amount);
 let isRadius = radius ? "1%" : "0";
 ---
 
-<div class="image-container flex flex-col gap-3">
+<div class="image-container">
   {
-    imgAmount.length > 1 ? (
-      imgAmount.map((image, amount, ratio) => (
-        <div class="w-full relative">
-          <Image
-            style={{ borderRadius: isRadius }}
-            src={image.src}
-            alt={image.alt}
-            data-title={`${image.title}`}
-            width={1400}
-            height={1400}
-            aspectRatio={"1:1"}
-            format="jpg"
-          />
-          <div class="overlay">
-            <div class="text">{image.title}</div>
-          </div>
+    imgAmount.map((image, amount, ratio) => (
+      <div class="image-item">
+        <Image
+          class="image"
+          style={{ borderRadius: isRadius }}
+          src={image.src}
+          alt={image.alt}
+          data-title={`${image.title}`}
+          width={1400}
+          height={1400}
+          aspectRatio={"1:1"}
+          format="jpg"
+        />
+        <div class="overlay">
+          <div class="text">{image.title}</div>
         </div>
-      ))
-    ) : (
-      <Image
-        src={images[0].src}
-        alt={images[0].alt}
-        data-title={`${images[0].title}`}
-        width={1440}
-        height={1440}
-        aspectRatio={"1:1"}
-        format="jpg"
-      />
-    )
+      </div>
+    ))
   }
 </div>
 
 <script>
   const imgList = document.querySelector(".image-container");
-  const images = imgList.querySelectorAll(".w-full img");
-  console.log(images);
+  const images = imgList.querySelectorAll(".image-item img");
   const handleLoad = () => {
     for (let i = 0; i < images.length; i++) {
-      console.log(images[i]);
       images[i].classList.add("img-fade");
     }
   };
 
-  images;
   window.addEventListener("load", handleLoad);
 </script>
 
 <style define:vars={{ isRadius }}>
-  /* .image-container {
+  .image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .image-item {
+    flex: 1 1 100%;
     position: relative;
-  } */
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .image-item {
+      flex: 1 1 calc(50% - 1rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .image-item {
+      flex: 1 1 calc(25% - 1rem);
+    }
+  }
+
   img {
-    display: hidden;
+    display: none;
     width: 100%;
     opacity: 0;
+    -webkit-transform: scale(1);
     transform: scale(1);
+    -webkit-filter: blur(2rem);
     filter: blur(2rem);
-    transition: opacity 1s ease-in;
-    transition: filter 1s ease-in;
+    -webkit-transition: opacity 1s ease-in, filter 1s ease-in;
+    transition: opacity 1s ease-in, filter 1s ease-in;
   }
+
   .img-fade {
     display: block;
     opacity: 1;
+    -webkit-filter: blur(0rem);
     filter: blur(0rem);
   }
   img:hover {
+    -webkit-transform: scale(1.02);
     transform: scale(1.02);
+    -webkit-transition: -webkit-transform 500ms ease-out;
     transition: transform 500ms ease-out;
     cursor: pointer;
   }
   .overlay {
     width: 100%;
-    z-index: 20;
+    z-index: 10;
     opacity: 0;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.5s ease;
+    -webkit-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
     background-color: rgba(0, 0, 0, 0.5);
   }
-  .overlay:hover {
-    opacity: 1;
-    transition: 0.5s ease;
-  }
+
   .text {
     color: white;
     font-size: 20px;
     text-align: center;
+  }
+  .overlay:hover,
+  .text:hover {
+    opacity: 1;
   }
 </style>
