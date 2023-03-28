@@ -1,5 +1,6 @@
 ---
 import { Image, Picture } from "@astrojs/image/components";
+import { positionAt } from "astro/dist/core/errors";
 
 import hearme from "../../public/assets/hearme.jpg";
 import her from "../../public/assets/her.jpg";
@@ -8,7 +9,6 @@ import passion from "../../public/assets/passion.jpg";
 
 export interface Props {
   amount: number;
-  ratio?: number;
   radius: boolean;
 }
 
@@ -16,9 +16,10 @@ type Imag = {
   src: string;
   alt: string;
   title: string;
+  description?: string;
 };
 
-let { amount, ratio = 16, radius } = Astro.props;
+let { amount, radius } = Astro.props;
 
 const images: Imag[] = [
   {
@@ -26,8 +27,16 @@ const images: Imag[] = [
     alt: "paiting titled hear me",
     title: "hear me",
   },
-  { src: her, alt: "painting titled her", title: "her" },
-  { src: muva, alt: "painting titled muva", title: "muva" },
+  {
+    src: her,
+    alt: "painting titled her",
+    title: "her",
+  },
+  {
+    src: muva,
+    alt: "painting titled muva",
+    title: "muva",
+  },
   {
     src: passion,
     alt: "painting titled passion",
@@ -38,43 +47,59 @@ let imgAmount = images.slice(0, amount);
 let isRadius = radius ? "1%" : "0";
 ---
 
-{
-  imgAmount.length > 1 ? (
-    imgAmount.map((image, amount, ratio) => (
+<div class="image-container flex flex-col gap-3">
+  {
+    imgAmount.length > 1 ? (
+      imgAmount.map((image, amount, ratio) => (
+        <div class="w-full relative">
+          <Image
+            style={{ borderRadius: isRadius }}
+            src={image.src}
+            alt={image.alt}
+            data-title={`${image.title}`}
+            width={1400}
+            height={1400}
+            aspectRatio={"1:1"}
+            format="jpg"
+          />
+          <div class="overlay">
+            <div class="text">{image.title}</div>
+          </div>
+        </div>
+      ))
+    ) : (
       <Image
-        style={{ borderRadius: isRadius }}
-        src={image.src}
-        alt={image.alt}
-        data-title={`${image.title}`}
-        width={1400}
-        height={1400}
+        src={images[0].src}
+        alt={images[0].alt}
+        data-title={`${images[0].title}`}
+        width={1440}
+        height={1440}
         aspectRatio={"1:1"}
         format="jpg"
       />
-    ))
-  ) : (
-    <Image
-      src={images[0].src}
-      alt={images[0].alt}
-      data-title={`${images[0].title}`}
-      width={1440}
-      height={1440}
-      aspectRatio={"1:1"}
-      format="jpg"
-    />
-  )
-}
+    )
+  }
+</div>
+
 <script>
-  const imgList = document.querySelector("#img-list");
-  const image = imgList.children;
+  const imgList = document.querySelector(".image-container");
+  const images = imgList.querySelectorAll(".w-full img");
+  console.log(images);
   const handleLoad = () => {
-    for (let i = 0; i < image.length; i++) {
-      image[i].classList.add("img-fade");
+    for (let i = 0; i < images.length; i++) {
+      console.log(images[i]);
+      images[i].classList.add("img-fade");
     }
   };
+
+  images;
   window.addEventListener("load", handleLoad);
 </script>
+
 <style define:vars={{ isRadius }}>
+  /* .image-container {
+    position: relative;
+  } */
   img {
     display: hidden;
     width: 100%;
@@ -93,5 +118,27 @@ let isRadius = radius ? "1%" : "0";
     transform: scale(1.02);
     transition: transform 500ms ease-out;
     cursor: pointer;
+  }
+  .overlay {
+    width: 100%;
+    z-index: 20;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .overlay:hover {
+    opacity: 1;
+    transition: 0.5s ease;
+  }
+  .text {
+    color: white;
+    font-size: 20px;
+    text-align: center;
   }
 </style>

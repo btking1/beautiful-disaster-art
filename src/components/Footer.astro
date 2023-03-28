@@ -3,7 +3,7 @@ const path = Astro.url.pathname;
 
 let sticky = false;
 if (path === "/") {
-  console.log("home");
+  // console.log("home");
   sticky = true;
 }
 ---
@@ -11,7 +11,7 @@ if (path === "/") {
 <footer
   class={`${
     sticky ? "fixed" : ""
-  } flex w-full bottom-0 justify-center gap-x-6 items-center`}
+  } flex w-full p-3 bottom-0 justify-center gap-x-6 items-center`}
 >
   <a href="https://instagram.com">
     <svg
