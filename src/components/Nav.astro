@@ -32,8 +32,10 @@ const links = [
   </ul>
 </nav>
 <script>
-  const menuButton = document.querySelector("#menu-button");
-  const menu = document.querySelector("#menu");
+  const menuButton = document.querySelector(
+    "#menu-button"
+  ) as HTMLButtonElement;
+  const menu = document.querySelector("#menu") as HTMLElement;
 
   function toggleMenu() {
     menu.classList.toggle("hidden");

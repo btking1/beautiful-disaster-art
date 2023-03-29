@@ -1,12 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImgList from "../components/ImgList.astro";
+import { getCollection } from "astro:content";
+
+const art = await getCollection("art");
 ---
 
 <Layout title="gallery">
   <main class="py-2">
     <section id="img-list" class={`w-full px-2`}>
-      <ImgList amount={4} radius={true} />
+      <ImgList amount={4} radius={true} art={art} />
     </section>
   </main>
 </Layout>

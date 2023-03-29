@@ -1,69 +1,31 @@
 ---
 import { Image, Picture } from "@astrojs/image/components";
-import { positionAt } from "astro/dist/core/errors";
-
-import hearme from "../../public/assets/hearme.jpg";
-import her from "../../public/assets/her.jpg";
-import muva from "../../public/assets/muva.jpg";
-import passion from "../../public/assets/passion.jpg";
-
-export interface Props {
-  amount: number;
-  radius: boolean;
-}
-
-type Imag = {
-  src: string;
-  alt: string;
-  title: string;
-  description?: string;
-};
+import type { CollectionEntry } from "astro:content";
 
 let { amount, radius } = Astro.props;
-
-const images: Imag[] = [
-  {
-    src: hearme,
-    alt: "paiting titled hear me",
-    title: "hear me",
-  },
-  {
-    src: her,
-    alt: "painting titled her",
-    title: "her",
-  },
-  {
-    src: muva,
-    alt: "painting titled muva",
-    title: "muva",
-  },
-  {
-    src: passion,
-    alt: "painting titled passion",
-    title: "passion",
-  },
-];
-let imgAmount = images.slice(0, amount);
+const { art } = Astro.props;
+let artAmount = art.slice(0, amount);
 let isRadius = radius ? "1%" : "0";
 ---
 
 <div class="image-container">
   {
-    imgAmount.map((image, amount, ratio) => (
+    artAmount.map((image) => (
       <div class="image-item">
         <Image
           class="image"
           style={{ borderRadius: isRadius }}
-          src={image.src}
-          alt={image.alt}
-          data-title={`${image.title}`}
+          src={image.data.image}
+          alt={image.data.title}
+          data-title={`${image.data.title}`}
           width={1400}
           height={1400}
           aspectRatio={"1:1"}
           format="jpg"
         />
+
         <div class="overlay">
-          <div class="text">{image.title}</div>
+          <div class="text">{image.data.title}</div>
         </div>
       </div>
     ))
@@ -71,8 +33,17 @@ let isRadius = radius ? "1%" : "0";
 </div>
 
 <script>
-  const imgList = document.querySelector(".image-container");
-  const images = imgList.querySelectorAll(".image-item img");
+  const imgList = document.querySelector(".image-container") as HTMLElement;
+  const images = imgList.querySelectorAll(
+    ".image-item img"
+  ) as NodeListOf<HTMLImageElement>;
+  const overlay = document.querySelector(".overlay") as HTMLElement;
+  const text: Element = document.querySelector(".text") as HTMLElement;
+  // get the width of the div .overlay
+  const overlayWidth = overlay.offsetWidth;
+  console.log(overlayWidth);
+  console.log(imgList.childNodes);
+  // (`transform-[translateX(-${overlayWidth}px)]`)
   const handleLoad = () => {
     for (let i = 0; i < images.length; i++) {
       images[i].classList.add("img-fade");
@@ -142,18 +113,20 @@ let isRadius = radius ? "1%" : "0";
     display: flex;
     justify-content: center;
     align-items: center;
-    -webkit-transition: opacity 0.5s ease;
+    -webkit-transition: all 0.5s ease;
     transition: opacity 0.5s ease;
     background-color: rgba(0, 0, 0, 0.5);
   }
 
   .text {
     color: white;
-    font-size: 20px;
+    font-size: 24px;
+    font-family: var(--inconsolata);
+    font-weight: 300;
     text-align: center;
   }
-  .overlay:hover,
-  .text:hover {
+  .overlay:hover {
     opacity: 1;
+    cursor: pointer;
   }
 </style>
