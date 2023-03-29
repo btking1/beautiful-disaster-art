@@ -1,7 +1,7 @@
 ---
 title: her
 slug: her
-image: /public/assets/her.jpg
+image: /assets/her.jpg
 excerpt: This stunning portrait measures 30 inches by 40 inches and features a delicate, ethereal subject with intricate details in her hair and clothing.
 date: 03-22-23
 ---
