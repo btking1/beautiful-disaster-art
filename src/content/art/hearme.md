@@ -1,7 +1,7 @@
 ---
 title: hear me
 slug: hear-me
-image: /assets/hearme.jpg
+src: /assets/hearme.jpg
 excerpt: This powerful painting measures 24 inches by 36 inches and features a central figure with outstretched arms against a background of deep blues and purples.
 date: 03-22-23
 ---

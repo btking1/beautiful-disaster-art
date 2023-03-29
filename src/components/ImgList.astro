@@ -1,13 +1,15 @@
 ---
-import { Image, Picture } from "@astrojs/image/components";
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import { Image } from "@astrojs/image/components";
+import getArt from "../utils/getArt";
 
-const art: CollectionEntry<"art">[] = await getCollection("art");
+export interface Props {
+  amount: number;
+  radius: boolean;
+}
 
-const { amount, radius } = Astro.props;
-let artAmount = art.slice(0, amount);
+const { amount, radius } = Astro.props as Props;
 
+let artAmount = getArt().slice(0, amount);
 let isRadius = radius ? "1%" : "0";
 ---
 
@@ -16,20 +18,19 @@ let isRadius = radius ? "1%" : "0";
     artAmount.map((image) => (
       <div class="image-item">
         <Image
-          class="image"
+          class={""}
           style={{ borderRadius: isRadius }}
-          src={image.data.image}
-          alt={image.data.title}
-          data-title={`${image.data.title}`}
+          src={image.src}
+          alt={image.title}
           width={1400}
           height={1400}
           aspectRatio={"1:1"}
           format="jpg"
         />
 
-        <div class="overlay">
+        <div class="overlay opacity-1 hover:opacity-1">
           <a href={`/art/${image.slug}/`}>
-            <div class="text">{image.data.title}</div>
+            <div class="text">{image.title}</div>
           </a>
         </div>
       </div>
@@ -37,28 +38,7 @@ let isRadius = radius ? "1%" : "0";
   }
 </div>
 
-<script>
-  const imgList = document.querySelector(".image-container") as HTMLElement;
-  const images = imgList.querySelectorAll(
-    ".image-item img"
-  ) as NodeListOf<HTMLImageElement>;
-  const overlay = document.querySelector(".overlay") as HTMLElement;
-  const text: Element = document.querySelector(".text") as HTMLElement;
-  // get the width of the div .overlay
-  const overlayWidth = overlay.offsetWidth;
-  console.log(overlayWidth);
-  console.log(imgList.childNodes);
-  // (`transform-[translateX(-${overlayWidth}px)]`)
-  const handleLoad = () => {
-    for (let i = 0; i < images.length; i++) {
-      images[i].classList.add("img-fade");
-    }
-  };
-
-  window.addEventListener("load", handleLoad);
-</script>
-
-<style define:vars={{ isRadius }}>
+<style>
   .image-container {
     display: flex;
     flex-wrap: wrap;
@@ -85,15 +65,14 @@ let isRadius = radius ? "1%" : "0";
   }
 
   img {
-    display: none;
+    /* display: none; */
     width: 100%;
-    opacity: 0;
-    -webkit-transform: scale(1);
+    /* -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-filter: blur(2rem);
     filter: blur(2rem);
     -webkit-transition: opacity 1s ease-in, filter 1s ease-in;
-    transition: opacity 1s ease-in, filter 1s ease-in;
+    transition: opacity 1s ease-in, filter 1s ease-in; */
   }
 
   .img-fade {
@@ -112,15 +91,19 @@ let isRadius = radius ? "1%" : "0";
   .overlay {
     width: 100%;
     z-index: 10;
+    border-radius: 1%;
     opacity: 0;
     position: absolute;
     inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    -webkit-transition: all 0.5s ease;
+    -webkit-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
     background-color: rgba(0, 0, 0, 0.5);
+  }
+  .overlay:hover {
+    opacity: 1;
   }
   a:hover {
     text-decoration-color: var(--primary-2);
@@ -132,10 +115,9 @@ let isRadius = radius ? "1%" : "0";
     font-family: var(--inconsolata);
     font-weight: 300;
     text-align: center;
-    text-decoration-color: hotpink;
   }
-  .overlay:hover {
-    opacity: 1;
+
+  .text:hover {
     cursor: pointer;
   }
 </style>

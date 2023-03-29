@@ -1,19 +1,51 @@
 ---
-import { getEntryBySlug } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { CollectionEntry, getEntryBySlug } from "astro:content";
+import { Image } from "@astrojs/image/components";
+import getArt from "../../utils/getArt";
 
 const { slug } = Astro.params;
 if (slug === undefined) {
   throw new Error("Slug is required");
 }
 
-const entry = await getEntryBySlug("art", slug);
-
+const entry: CollectionEntry<"art"> | undefined = await getEntryBySlug(
+  "art",
+  slug
+);
+const artList = getArt();
+const currentIndex = artList.findIndex((art) => art.slug === slug);
+const prevPage =
+  currentIndex > 0
+    ? artList[currentIndex - 1].slug
+    : artList[artList.length - 1].slug;
+const nextPage =
+  currentIndex < artList.length - 1
+    ? artList[currentIndex + 1].slug
+    : artList[0].slug;
+console.log(prevPage);
+console.log(nextPage);
+const { Content, headings } = await entry.render();
 if (entry === undefined) {
   return Astro.redirect("/404");
 }
-console.log(entry);
-// 4. (Optional) Render the entry to HTML in the template
-// const { Content } = await entry.render();
+
+// console.log(entry);
 ---
 
-<h1>{JSON.stringify(entry.data.title)}</h1>
+<Layout title={entry.data.title}>
+  <Image
+    alt={entry.data.title}
+    src={entry.data.src}
+    width={1400}
+    height={1400}
+    aspectRatio={1}
+    format={"jpg"}
+  />
+  <h3>{entry.data.title}</h3>
+  <Content />
+  <div class="flex w-full p-2 justify-between">
+    <button><a href={`/art/${prevPage}`}>previous</a></button>
+    <button><a href={`/art/${nextPage}`}>next</a></button>
+  </div>
+</Layout>
