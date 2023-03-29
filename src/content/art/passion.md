@@ -1,6 +1,6 @@
 ---
 title: passion of heartbreak
-slug: muva
+slug: passion-of-heartbreak
 image: /public/assets/passion.jpg
 excerpt: This evocative painting measures 36 inches by 48 inches and features a central heart motif, with figures intertwined in a sensual dance against a background of rich, deep colors.
 date: 03-22-23

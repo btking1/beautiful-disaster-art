@@ -3,13 +3,11 @@ import { Image, Picture } from "@astrojs/image/components";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
-// art?: CollectionEntry<"art">[];
-
 const art: CollectionEntry<"art">[] = await getCollection("art");
 
 const { amount, radius } = Astro.props;
 let artAmount = art.slice(0, amount);
-console.log(art.slice(0, 2));
+
 let isRadius = radius ? "1%" : "0";
 ---
 
@@ -30,7 +28,9 @@ let isRadius = radius ? "1%" : "0";
         />
 
         <div class="overlay">
-          <div class="text">{image.data.title}</div>
+          <a href={`/art/${image.slug}/`}>
+            <div class="text">{image.data.title}</div>
+          </a>
         </div>
       </div>
     ))

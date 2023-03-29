@@ -1,0 +1,19 @@
+---
+import { getEntryBySlug } from "astro:content";
+
+const { slug } = Astro.params;
+if (slug === undefined) {
+  throw new Error("Slug is required");
+}
+
+const entry = await getEntryBySlug("art", slug);
+
+if (entry === undefined) {
+  return Astro.redirect("/404");
+}
+console.log(entry);
+// 4. (Optional) Render the entry to HTML in the template
+// const { Content } = await entry.render();
+---
+
+<h1>{JSON.stringify(entry.data.title)}</h1>
