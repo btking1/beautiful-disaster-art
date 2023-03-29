@@ -1,7 +1,6 @@
 import { getCollection } from "astro:content";
-import { CollectionEntry } from "astro:content";
 
-const art: CollectionEntry<"art">[] = await getCollection("art");
+const art = await getCollection("art");
 
 export default function getArt() {
   return art.map(({ data, slug }) => {
