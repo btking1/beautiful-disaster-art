@@ -32,17 +32,31 @@ if (entry === undefined) {
 ---
 
 <Layout title={entry.data.title}>
-  <img
-    src={entry.data.src}
-    alt={entry.data.title}
-    class={`img-fade aspect-auto`}
-    width={1400}
-    height={1400}
-  />
-  <h3>{entry.data.title}</h3>
-  <Content />
-  <div class="flex w-full p-2 justify-between">
-    <button><a href={`/art/${prevPage}`}>previous</a></button>
-    <button><a href={`/art/${nextPage}`}>next</a></button>
-  </div>
+  <main class="flex flex-col gap-y-3">
+    <img
+      src={entry.data.src}
+      alt={entry.data.title}
+      class={`img-fade aspect-auto`}
+      width={1400}
+      height={1400}
+    />
+    <h3>{entry.data.title}</h3><Content />
+    <div class="flex w-full justify-between">
+      <button><a href={`/art/${prevPage}`}>previous</a></button>
+      <button><a href={`/art/${nextPage}`}>next</a></button>
+    </div>
+  </main>
 </Layout>
+<style>
+  h3 {
+    font-family: var(--inconsolata);
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+  button {
+    font-family: var(--athiti);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--accent-4);
+  }
+</style>
