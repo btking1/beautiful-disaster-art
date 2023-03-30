@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ImgList from "../components/ImgList.astro";
+import ImgList from "../components/ImgList.jsx";
 ---
 
 <Layout title="gallery">
   <main class="py-2">
     <section id="img-list" class={`w-full px-2`}>
-      <ImgList amount={4} radius={true} />
+      <ImgList amount={4} radius={true} client:load />
     </section>
   </main>
 </Layout>

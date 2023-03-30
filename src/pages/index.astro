@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ImgList from "../components/ImgList.astro";
+import ImgList from "../components/ImgList.jsx";
 ---
 
 <Layout title="Beautiful Disaster Art">
@@ -20,7 +20,7 @@ import ImgList from "../components/ImgList.astro";
     </section>
 
     <section id="img-list" class={`w-full ml-[-5%] pt-8`}>
-      <ImgList amount={1} radius={false} />
+      <ImgList amount={1} radius={false} client:idle />
     </section>
   </main>
 </Layout>
