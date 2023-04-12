@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import EventCard from "../components/EventCard";
+---
+
+<Layout title="events">
+  <main>
+    <section class="flex flex-col justify-center items-center">
+      <h1>events</h1>
+      <EventCard />
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .event-city {
+    transform: translateX(0%);
+    transition: transform 0.2s ease-in-out;
+  }
+  .event-city:hover {
+    transform: translateX(-3rem);
+  }
+</style>

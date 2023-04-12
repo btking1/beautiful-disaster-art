@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import nodemailer from "nodemailer";
+
+const email = "bookerking9@gmail.com";
+const pass = "nsyznjvkispizanw";
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: email,
+    pass: pass,
+  },
+});
+
+let mailOptions = {
+  from: email,
+  to: "bookerking9@gmail.com",
+};
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get("name");
+    const email = data.get("email");
+    const message = data.get("message");
+    console.log(data);
+    await transporter.sendMail({
+      ...mailOptions,
+      subject: "New Message",
+      text: `Name: ${name} Email: ${email} Message: ${message}`,
+      html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
+    });
+  } catch (err) {
+    if (err instanceof Error) {
+      console.error(err.message);
+    }
+  }
+}
+---
+
+<Layout title="contact">
+  <main class="flex flex-col items-center justify-center">
+    <h1>contact</h1>
+    <form method="post" class="flex flex-col">
+      <label>
+        Name:
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        Email:
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        Message:
+        <input type="text" name="message" />
+      </label>
+      <button>Submit</button>
+    </form>
+  </main>
+</Layout>
