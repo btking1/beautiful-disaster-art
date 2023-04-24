@@ -23,78 +23,78 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="container mx-auto px-3 flex flex-col min-h-screen gap-3">
     <Nav />
     <slot />
-    <div class="flex w-full py-4"></div>
     <Footer />
   </body>
-</html>
-<style is:global>
-  :root {
-    --accent: rgba(0, 0, 0, 1);
-    --accent-white: rgba(248, 249, 250, 1);
-    --accent-secondary: rgba(52, 58, 64, 1);
-    --accent-secondary-alpha: rgba(52, 58, 64, 0.7);
-    --accent-3: rgba(102, 102, 110, 1);
-    --accent-4: rgba(137, 137, 150, 1);
-    --primary: rgba(2, 187, 182, 1);
-    --primary-2: rgba(67, 203, 199, 1);
-    --primary-3: rgba(194, 238, 237, 1);
-    --primary-3-alpha: rgba(194, 238, 237, 0.8);
-    --inconsolata: "Inconsolata", monospace;
-    --athiti: "Athiti", sans-serif;
 
-    --h1: 22px;
-    --hero: 18px;
+  <style is:global>
+    :root {
+      --accent: rgba(0, 0, 0, 1);
+      --accent-white: rgba(248, 249, 250, 1);
+      --accent-secondary: rgba(52, 58, 64, 1);
+      --accent-secondary-alpha: rgba(52, 58, 64, 0.7);
+      --accent-3: rgba(102, 102, 110, 1);
+      --accent-4: rgba(137, 137, 150, 1);
+      --primary: rgba(2, 187, 182, 1);
+      --primary-2: rgba(67, 203, 199, 1);
+      --primary-3: rgba(194, 238, 237, 1);
+      --primary-3-alpha: rgba(194, 238, 237, 0.8);
+      --inconsolata: "Inconsolata", monospace;
+      --athiti: "Athiti", sans-serif;
 
-    /* --accent: 124, 58, 237;
+      --h1: 22px;
+      --hero: 18px;
+
+      /* --accent: 124, 58, 237;
 		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%); */
-  }
+    }
 
-  /* Reset margins and paddings */
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font: inherit;
-  }
+    /* Reset margins and paddings */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font: inherit;
+    }
 
-  /* Set default font */
-  html {
-    font-family: Oxygen, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    scroll-behavior: smooth;
-  }
+    /* Set default font */
+    html {
+      font-family: Oxygen, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+      scroll-behavior: smooth;
+    }
 
-  body {
-    min-height: 100vh;
-  }
+    body {
+      min-height: 100vh;
+    }
 
-  /* Style anchor links */
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+    /* Style anchor links */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-  a:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--primary-2);
-  }
-  /* Style lists */
-  ul,
-  ol {
-    list-style: none;
-    padding-left: 0;
-  }
+    a:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--primary-2);
+    }
+    /* Style lists */
+    ul,
+    ol {
+      list-style: none;
+      padding-left: 0;
+    }
 
-  button {
-    cursor: pointer;
-  }
-</style>
+    button {
+      cursor: pointer;
+    }
+  </style>
+</html>

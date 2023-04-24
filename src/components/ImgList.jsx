@@ -36,8 +36,6 @@ export default function ArtGallery({ amount, radius }) {
               src={src}
               alt={title}
               className={`img-fade ${isRadius} aspect-auto`}
-              width={1400}
-              height={1400}
               onLoad={(event) => {
                 event.target.classList.remove("img-fade");
               }}
@@ -68,11 +66,11 @@ export default function ArtGallery({ amount, radius }) {
           .image-item {
             flex: 1 1 calc(50% - 1rem);
           }
-        }
 
-        @media (min-width: 1024px) {
-          .image-item {
-            flex: 1 1 calc(25% - 1rem);
+          img {
+            width: 100%;
+            height: 100%;
+            min-height: 90vh;
           }
         }
 

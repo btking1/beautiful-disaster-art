@@ -2,8 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import nodemailer from "nodemailer";
 
-const email = "bookerking9@gmail.com";
-const pass = "nsyznjvkispizanw";
+const email = await import.meta.env.EMAIL;
+const pass = await import.meta.env.PASS;
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -14,7 +14,7 @@ let transporter = nodemailer.createTransport({
 
 let mailOptions = {
   from: email,
-  to: "bookerking9@gmail.com",
+  to: email,
 };
 
 if (Astro.request.method === "POST") {
@@ -30,6 +30,9 @@ if (Astro.request.method === "POST") {
       text: `Name: ${name} Email: ${email} Message: ${message}`,
       html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
     });
+    if (Astro.response.status === 200) {
+      console.log("Email sent");
+    }
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);
@@ -39,22 +42,88 @@ if (Astro.request.method === "POST") {
 ---
 
 <Layout title="contact">
-  <main class="flex flex-col items-center justify-center">
+  <main class="flex flex-col items-center justify-center min-h-[70vh]">
     <h1>contact</h1>
-    <form method="post" class="flex flex-col">
-      <label>
-        Name:
-        <input type="text" name="name" required />
-      </label>
-      <label>
-        Email:
-        <input type="email" name="email" required />
-      </label>
-      <label>
-        Message:
-        <input type="text" name="message" />
-      </label>
-      <button>Submit</button>
-    </form>
+    <div class="py-4 px-6 rounded-sm w-full md:w-[40vw]">
+      <form
+        method="post"
+        class="flex flex-col gap-3 px-3 py-2 justify-center items-center w-full"
+      >
+        <input
+          placeholder="name"
+          type="text"
+          name="name"
+          class="rounded-sm w-full"
+          required
+        />
+        <input
+          placeholder="email"
+          class="w-full"
+          type="email"
+          name="email"
+          required
+        />
+
+        <textarea placeholder="message" name="message" class="w-full"
+        ></textarea>
+        <button class="submit">Submit</button>
+      </form>
+    </div>
   </main>
 </Layout>
+
+<script>
+  const form = document.querySelector("form") as HTMLFormElement;
+  const submit = document.querySelector(".submit") as HTMLButtonElement;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    submit.disabled = true;
+    submit.innerHTML = "Sending...";
+    fetch("/contact", {
+      method: "POST",
+      body: new FormData(form),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          setTimeout(() => {
+            submit.innerHTML = "Sent!";
+          }, 1000);
+
+          form.reset();
+          submit.disabled = false;
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        submit.innerHTML = "Error";
+        submit.disabled = false;
+      });
+  });
+</script>
+<style>
+  .submit {
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  input,
+  textarea {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--primary);
+
+    color: var(--primary);
+  }
+  textarea {
+    border: 1px solid var(--primary);
+    border-radius: 0.2rem;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+  }
+</style>

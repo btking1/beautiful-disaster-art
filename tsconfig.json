@@ -4,6 +4,7 @@
     "strictNullChecks": true,
     "allowJs": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+    "allowImportingTsExtensions": true
   }
 }
