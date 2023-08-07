@@ -1,12 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImgList from "../components/ImgList.jsx";
+import ImgContainer from "../components/ImgContainer.svelte";
 ---
 
 <Layout title="gallery">
   <main class="md:pt-8 py-2">
-    <section id="img-list" class={`w-full px-2`}>
-      <ImgList amount={4} radius={true} client:load />
+    <section id="img-list" class={`flex flex-col gap-y-3 w-full items-center`}>
+      <ImgContainer client:load />
+      <ImgContainer title={"her"} client:load />
+      <ImgContainer title={"passion of heartbreak"} client:load />
+      <ImgContainer title={"muva"} client:load />
     </section>
   </main>
 </Layout>

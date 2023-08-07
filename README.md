@@ -26,7 +26,77 @@ _Instructions on how to set up and install your project, including dependencies 
 - [x] Implement lazy loading for images to improve page load times
 - [ ] Organize content in collapsible sections or accordions where appropriate
 - [ ] Ensure smooth scrolling navigation for in-page links
+```
+<script>
+  const menuButton = document.querySelector(
+    "#menu-button"
+  ) as HTMLButtonElement;
+  const menu = document.querySelector("#menu") as HTMLElement;
 
+  function toggleMenu() {
+    menu.classList.toggle("hidden");
+  }
+
+  menuButton.addEventListener("click", toggleMenu);
+</script>
+<style is:global>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: var(--accent-4);
+    font-family: var(--inconsolata);
+    font-weight: 400;
+    font-size: var(--h1);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  h1 > span {
+    color: var(--primary);
+  }
+
+  #menu-button {
+    z-index: 1001;
+    width: 2rem;
+    aspect-ratio: 1;
+    border: 0;
+    background: url("/public/assets/icons/menu-outline.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .mobile-menu {
+    z-index: 1000;
+    justify-content: center;
+  }
+
+  li {
+    font-family: var(--athiti);
+    color: var(--accent-white);
+  }
+
+  @media (min-width: 400px) {
+    #menu-button {
+      display: none;
+    }
+
+    li {
+      color: var(--accent-4);
+    }
+
+    .mobile-menu {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      position: static;
+      background-color: transparent;
+    }
+  }
+</style>
+
+```
 ## Contributing
 
 _Add instructions for potential contributors or collaborators, if applicable._

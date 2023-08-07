@@ -1,17 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// import ImgList from "../components/ImgList.jsx";
-import ImageFade from "../components/imgFade/ImageFade.tsx";
+import ImgFade from "../components/ImgFade.svelte";
 ---
 
 <Layout title="Beautiful Disaster Art">
-  <main class="md:pt-8 md:flex flex-col relative md:justify-center">
+  <main class="pt-4 sm:pt-8 md:flex flex-col relative md:justify-center">
     <div class="md:flex w-full justify-center">
-      <ImageFade client:only />
+      <ImgFade client:load />
     </div>
 
     <div class="md:flex md:w-full justify-center">
-      <p class="p-3 text-center md:tracking-widest lg:text-lg md:max-w-[50vw]">
+      <p
+        class="p-3 text-center md:tracking-widest lg:text-lg max-w-[20vw]md:max-w-[70vw]lg:max-w-[50vw]"
+      >
         Welcome to <span>Beautiful Disaster</span> Art, where my art is <span
           >home</span
         >. I pour my <span>heart</span>
@@ -45,13 +46,6 @@ import ImageFade from "../components/imgFade/ImageFade.tsx";
     font-size: var(--hero);
     font-style: normal;
     font-weight: 400;
-  }
-  img {
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    display: block;
-    cursor: pointer;
   }
   p > span {
     color: var(--primary-2);

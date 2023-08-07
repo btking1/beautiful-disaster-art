@@ -1,7 +1,7 @@
 ---
 title: muva
 slug: muva
-src: /assets/muva.jpg
+src: /assets/muva.png
 excerpt: This vibrant painting measures 18 inches by 24 inches and depicts a tender embrace between a mother and child, with bold colors and energetic strokes.
 date: 03-22-23
 ---

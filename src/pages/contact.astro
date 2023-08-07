@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+// @ts-ignore
 import nodemailer from "nodemailer";
 
 const email = await import.meta.env.EMAIL;
@@ -44,7 +45,7 @@ if (Astro.request.method === "POST") {
 <Layout title="contact">
   <main class="flex flex-col items-center justify-center min-h-[70vh]">
     <h1>contact</h1>
-    <div class="py-4 px-6 rounded-sm w-full md:w-[40vw]">
+    <div class="py-4 px-6 sm:px-1 rounded-sm w-full md:w-[60vw] lg:w-[40vw]">
       <form
         method="post"
         class="flex flex-col gap-3 px-3 py-2 justify-center items-center w-full"
@@ -53,7 +54,7 @@ if (Astro.request.method === "POST") {
           placeholder="name"
           type="text"
           name="name"
-          class="rounded-sm w-full"
+          class="w-full"
           required
         />
         <input
@@ -64,7 +65,7 @@ if (Astro.request.method === "POST") {
           required
         />
 
-        <textarea placeholder="message" name="message" class="w-full"
+        <textarea placeholder="message" name="message" class="w-full mt-3"
         ></textarea>
         <button class="submit">Submit</button>
       </form>
