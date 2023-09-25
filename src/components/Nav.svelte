@@ -2,7 +2,7 @@
   const links = [
     { href: "/", label: "Home" },
     { href: "/gallery", label: "gallery" },
-    { href: "/events", label: "events" },
+    { href: "/events", label: "info" },
     { href: "/contact", label: "contact" },
     { href: "/shop", label: "shop (comming soon!)" },
   ];

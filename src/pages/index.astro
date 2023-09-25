@@ -1,10 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
 import ImgFade from "../components/ImgFade.svelte";
 ---
 
 <Layout title="Beautiful Disaster Art">
-  <main class="pt-4 sm:pt-8 md:flex flex-col relative md:justify-center">
+  <main
+    class="pt-4 sm:pt-8 md:flex flex-col relative md:justify-center"
+    transition:animate="fade"
+  >
     <div class="md:flex w-full justify-center">
       <ImgFade client:load />
     </div>
@@ -16,8 +20,9 @@ import ImgFade from "../components/ImgFade.svelte";
         Welcome to <span>Beautiful Disaster</span> Art, where my art is <span
           >home</span
         >. I pour my <span>heart</span>
-        and <span>soul</span> into each piece, capturing the <span>beauty</span>
-        of the world. My goal is to <span>inspire</span> and bring <span
+         and <span>soul</span> into each piece, capturing the <span>beauty</span
+        >
+         of the world. My goal is to <span>inspire</span> and bring <span
           >joy</span
         > to your life. <span>Thank you</span> for visiting and <span
           >supporting</span

@@ -1,16 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ImgList from "../components/ImgList.jsx";
 import ImgContainer from "../components/ImgContainer.svelte";
+import VideoContainer from "../components/VideoContainer.svelte";
 ---
 
 <Layout title="gallery">
-  <main class="md:pt-8 py-2">
+  <main class="md:pt-8 py-2" transition:animate="fade">
     <section id="img-list" class={`flex flex-col gap-y-3 w-full items-center`}>
       <ImgContainer client:load />
       <ImgContainer title={"her"} client:load />
       <ImgContainer title={"passion of heartbreak"} client:load />
       <ImgContainer title={"muva"} client:load />
+      <h1 class="text-xl">videos</h1>
+      <VideoContainer title="one" />
+      <VideoContainer title="two" />
+      <VideoContainer title="three" />
     </section>
   </main>
 </Layout>
+<style>
+  h1 {
+    font-family: var(--inconsolata);
+  }
+</style>

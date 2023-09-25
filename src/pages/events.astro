@@ -1,12 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import EventCard from "../components/EventCard";
+import EventCard from "../components/EventCard.svelte";
 ---
 
 <Layout title="events">
-  <main>
-    <section class="flex flex-col justify-center items-center">
-      <!-- <h1>events</h1> -->
+  <main transition:animate="fade">
+    <section class="flex flex-col justify-between items-center">
       <EventCard />
     </section>
   </main>

@@ -22,14 +22,20 @@
       sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px"
       alt={art.content.title}
     />
-    <h3
-      class="text-4xl text-white absolute inset-50 z-20 font-[athiti] font-medium opacity-0 md:opacity-0 md:hover:opacity-100 sm:opacity-100 ease-in-out delay-50 duration-300"
-      style="font-size: 4vw;"
+    <a
+      href={`art/${art.slug}`}
+      class="w-full h-full opacity-0 md:opacity-0 p-2 active:scale-[110%]
+      active:opacity-100
+      no-underline hover:no-underline
+    
+    md:hover:opacity-100 sm:opacity-100 ease-in-out delay-50 duration-300 absolute inset-50"
     >
-      <a href={`art/${art.slug}`} class="p-2">
+      <h3
+        class="text-4xl text-white z-20 font-[athiti] p-2 font-medium w-full h-full flex justify-center items-center"
+      >
         {art.content.title}
-      </a>
-    </h3>
+      </h3>
+    </a>
   </div>
 {:catch error}
   <p>{error.status}</p>
