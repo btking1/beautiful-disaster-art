@@ -23,8 +23,6 @@ const nextPage =
   currentIndex < artList.length - 1
     ? artList[currentIndex + 1].slug
     : artList[0].slug;
-console.log(prevPage);
-console.log(nextPage);
 const { Content, headings } = await entry.render();
 if (entry === undefined) {
   return Astro.redirect("/404");

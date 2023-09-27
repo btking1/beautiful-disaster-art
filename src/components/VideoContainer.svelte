@@ -8,6 +8,7 @@
     controls
     class="aspect-auto md:max-w-2xl transition ease-in-out delay-50 duration-300 rounded-md"
   >
+    <track kind="captions" />
     <source src={`../../public/assets/videos/${title}.mov`} type="video/mp4" />
   </video>
 </div>
